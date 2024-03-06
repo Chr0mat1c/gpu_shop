@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Themes/hyper.dart';
+
 
 // ignore: must_be_immutable
 class MyButton extends StatelessWidget {
@@ -18,10 +18,10 @@ class MyButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: secondaryColor,
+          color: Colors.grey[400],
           borderRadius: BorderRadiusDirectional.circular(40),
           border: Border.all(
-            color: secondaryColor,
+            color: Colors.grey,
             width: 1,
           ),
         ),

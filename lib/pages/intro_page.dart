@@ -1,4 +1,3 @@
-import 'package:electronics/Themes/hyper.dart';
 import 'package:electronics/components/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,8 +31,8 @@ class IntroPage extends StatelessWidget {
     Market""",
                     style: GoogleFonts.dmSerifDisplay(
                       fontSize: 34,
-                      color: primaryColor,
-                      decorationColor: primaryColor,
+                      color: Colors.white,
+                      decorationColor: Colors.grey[700],
                     ),
                   ),
                 ),

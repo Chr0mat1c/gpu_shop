@@ -2,21 +2,18 @@ import 'package:electronics/components/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../Themes/hyper.dart';
-import '../models/Mobile.dart';
+import '../models/Gpu.dart';
 import '../models/shop.dart';
 
-class MobileDetailsPage extends StatefulWidget {
-  final Mobile mobile;
-  const MobileDetailsPage({super.key, required this.mobile});
+class GpuDetailsPage extends StatefulWidget {
+  final Gpu gpu;
+  const GpuDetailsPage({super.key, required this.gpu});
 
   @override
-  State<MobileDetailsPage> createState() => _MobileDetailsPageState();
+  State<GpuDetailsPage> createState() => _GpuDetailsPageState();
 }
 
-class _MobileDetailsPageState extends State<MobileDetailsPage> {
-  
-
+class _GpuDetailsPageState extends State<GpuDetailsPage> {
   int quantityCount = 0;
   void decrementQuantity() {
     setState(() {
@@ -36,13 +33,13 @@ class _MobileDetailsPageState extends State<MobileDetailsPage> {
       //get access to shop
       final shop = context.read<Shop>();
       //add to cart
-      shop.addToCart(widget.mobile, quantityCount);
+      shop.addToCart(widget.gpu, quantityCount);
       // let the user know it was successful
       showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-          backgroundColor: primaryColor,
+          backgroundColor: Colors.grey[700],
           content: const Text(
             "Successfully added to cart",
             style: TextStyle(
@@ -90,7 +87,7 @@ class _MobileDetailsPageState extends State<MobileDetailsPage> {
                 children: [
                   // image
                   Image.asset(
-                    widget.mobile.imagePath,
+                    widget.gpu.imagePath,
                     height: 200,
                   ),
                   const SizedBox(
@@ -110,7 +107,7 @@ class _MobileDetailsPageState extends State<MobileDetailsPage> {
                       ),
                       // rating number
                       Text(
-                        widget.mobile.rating,
+                        widget.gpu.rating,
                         style: TextStyle(
                           color: Colors.grey[600],
                           fontWeight: FontWeight.bold,
@@ -122,7 +119,7 @@ class _MobileDetailsPageState extends State<MobileDetailsPage> {
 
                   // name mobile
                   Text(
-                    widget.mobile.name,
+                    widget.gpu.name,
                     style: GoogleFonts.dmSerifDisplay(
                       fontSize: 28,
                     ),
@@ -140,7 +137,7 @@ class _MobileDetailsPageState extends State<MobileDetailsPage> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    "The Samsung Galaxy S10 is a line of Android-based smartphones manufactured, released and marketed by Samsung Electronics as part of the Samsung Galaxy S series. The Galaxy S10 series is the tenth generation of the Samsung Galaxy S, its flagship line of phones next to the Note models, which is also the 10th anniversary of the Galaxy S. Unveiled during the \"Samsung Galaxy Unpacked 2019\" press event held on 20 February 2019, the devices started shipping in certain regions such as Australia and the United States on 6 March 2019, then worldwide on 8 March 2019.",
+                    widget.gpu.description.toString(),
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 14,
@@ -153,7 +150,7 @@ class _MobileDetailsPageState extends State<MobileDetailsPage> {
           ),
           // price + quantity + add cart
           Container(
-            color: primaryColor,
+            color: Colors.grey[700],
             padding: const EdgeInsets.all(25),
             child: Column(
               children: [
@@ -163,7 +160,7 @@ class _MobileDetailsPageState extends State<MobileDetailsPage> {
                   children: [
                     // price
                     Text(
-                      "\$ ${widget.mobile.price}",
+                      "\$ ${widget.gpu.price}",
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -176,7 +173,7 @@ class _MobileDetailsPageState extends State<MobileDetailsPage> {
                         // minus button
                         Container(
                           decoration: BoxDecoration(
-                              color: secondaryColor, shape: BoxShape.circle),
+                              color: Colors.grey[400], shape: BoxShape.circle),
                           child: IconButton(
                             icon: const Icon(
                               Icons.remove,
@@ -200,7 +197,7 @@ class _MobileDetailsPageState extends State<MobileDetailsPage> {
                         // plus  button
                         Container(
                           decoration: BoxDecoration(
-                              color: secondaryColor, shape: BoxShape.circle),
+                              color: Colors.grey[400], shape: BoxShape.circle),
                           child: IconButton(
                             icon: const Icon(
                               Icons.add,
@@ -214,7 +211,7 @@ class _MobileDetailsPageState extends State<MobileDetailsPage> {
                   ],
                 ),
                 const SizedBox(height: 25),
-                
+
                 //add cart
                 MyButton(
                   text: "Add to Cart",

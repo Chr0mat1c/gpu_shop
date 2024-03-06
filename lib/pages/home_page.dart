@@ -1,10 +1,9 @@
-import 'package:electronics/components/mobile_tile.dart';
-import 'package:electronics/pages/mobile_details.dart';
+import 'package:electronics/components/gpu_tile.dart';
+import 'package:electronics/pages/gpu_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../Themes/hyper.dart';
 import '../models/shop.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,16 +14,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool favorite = true;
+
   // navigate mobile item details page
   void navigateToMobileDetails(int index) {
     // get the shop and and it's menu
     final shop = context.read<Shop>();
-    final mobileList = shop.mobileList;
+    final gpuList = shop.gpuList;
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => MobileDetailsPage(
-          mobile: mobileList[index],
+        builder: (context) => GpuDetailsPage(
+          gpu: gpuList[index],
         ),
       ),
     );
@@ -34,10 +35,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // get the shop and and it's menu
     final shop = context.read<Shop>();
-    final mobileList = shop.mobileList;
+    final gpuList = shop.gpuList;
 
     return Scaffold(
-      backgroundColor:backgroundColor,
+      backgroundColor: Colors.white,
       appBar: (AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -100,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     // image
                     Image.asset(
-                      "assets/images/Mobile/iphone-13-Pro-Silver.png",
+                      "assets/images/4060 ti 8gb Palit.png",
                       height: 70,
                       width: 70,
                     ),
@@ -115,13 +116,13 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         //name
                         Text(
-                          "Iphone 13 pro",
+                          "4060 ti 8gb Palit",
                           style: GoogleFonts.dmSerifDisplay(fontSize: 18),
                         ),
 
                         //price
                         Text(
-                          "\$ 750",
+                          "\$ 300",
                           style: TextStyle(color: Colors.grey[700]),
                         ),
                       ],
@@ -133,10 +134,16 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 //heart
-                const Icon(
-                  Icons.favorite_outline,
-                  color: Colors.grey,
-                  size: 25,
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      favorite = !favorite;
+                    });
+                  },
+                  icon: Icon(
+                    color: Colors.grey,
+                    favorite ? Icons.favorite : Icons.favorite_outline,
+                  ),
                 )
               ],
             ),
@@ -159,9 +166,9 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: mobileList.length,
-              itemBuilder: (context, index) => MobileTile(
-                mobile: mobileList[index],
+              itemCount: gpuList.length,
+              itemBuilder: (context, index) => GpuTile(
+                gpu: gpuList[index],
                 onTap: () => navigateToMobileDetails(index),
               ),
             ),

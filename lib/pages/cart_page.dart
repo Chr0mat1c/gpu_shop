@@ -1,16 +1,15 @@
 import "package:electronics/components/button.dart";
 import "package:electronics/models/shop.dart";
-import "package:electronics/pages/mobile_details.dart";
+import 'package:electronics/pages/gpu_details.dart';
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 
-import "../Themes/hyper.dart";
-import "../models/Mobile.dart";
+import '../models/Gpu.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
-  void removeFromCart(Mobile mobile, BuildContext context) {
+  void removeFromCart(Gpu mobile, BuildContext context) {
     final shop = context.read<Shop>();
     shop.removeToCart(mobile);
   }
@@ -18,12 +17,12 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // navigate mobile item details page
-    void navigateToMobileDetails(Mobile mobile, BuildContext context) {
+    void navigateToMobileDetails(Gpu gpu, BuildContext context) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MobileDetailsPage(
-            mobile: mobile,
+          builder: (context) => GpuDetailsPage(
+            gpu: gpu,
           ),
         ),
       );
@@ -33,11 +32,11 @@ class CartPage extends StatelessWidget {
       builder: (context, value, child) => Scaffold(
         appBar: AppBar(
           title: const Text('Cart'),
-          backgroundColor: primaryColor,
+          backgroundColor: Colors.grey[500],
           elevation: 0,
           foregroundColor: Colors.white,
         ),
-        backgroundColor: backgroundColor,
+        backgroundColor: Colors.white,
         body: Column(
           children: [
             Expanded(
@@ -45,7 +44,7 @@ class CartPage extends StatelessWidget {
                 itemCount: value.cart.length,
                 itemBuilder: (context, index) {
                   // get mobile from cart
-                  final Mobile gpu = value.cart[index];
+                  final Gpu gpu = value.cart[index];
 
                   // get mobile name
                   final String mobileName = gpu.name;
@@ -62,7 +61,7 @@ class CartPage extends StatelessWidget {
                   // return mobile list
                   return Container(
                     decoration: BoxDecoration(
-                        color: secondaryColor,
+                        color: Colors.grey[700],
                         borderRadius: BorderRadius.circular(8)),
                     margin: const EdgeInsets.only(left: 20, top: 20, right: 20),
                     child: ListTile(

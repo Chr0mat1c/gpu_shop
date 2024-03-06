@@ -1,17 +1,12 @@
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
-import '../models/Mobile.dart';
+import '../models/Gpu.dart';
 
-class MobileTile extends StatelessWidget {
-  final Mobile mobile;
+class GpuTile extends StatelessWidget {
+  final Gpu gpu;
   final void Function()? onTap;
 
-  const MobileTile({
-    super.key,
-    required this.mobile,
-    required this.onTap,
-  });
+  const GpuTile({super.key, required this.gpu, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +25,13 @@ class MobileTile extends StatelessWidget {
           children: [
             // image
             Image.asset(
-              mobile.imagePath,
+              gpu.imagePath,
               height: 140,
             ),
 
             // text
             Text(
-              mobile.name,
+              gpu.name,
               style: TextStyle(
                 fontSize: 20,
               ),
@@ -49,7 +44,7 @@ class MobileTile extends StatelessWidget {
                 children: [
                   //price
                   Text(
-                    "\$ ${mobile.price}",
+                    "\$ ${gpu.price}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.grey[700],
@@ -60,7 +55,7 @@ class MobileTile extends StatelessWidget {
                     children: [
                       Icon(Icons.star, color: Colors.yellow[800]),
                       Text(
-                        mobile.rating,
+                        gpu.rating,
                         style: const TextStyle(color: Colors.grey),
                       ),
                     ],
