@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 // ignore: must_be_immutable
 class MyButton extends StatelessWidget {
   final String text;
@@ -18,10 +17,10 @@ class MyButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[400],
+          color: const Color.fromARGB(255, 70, 172, 255),
           borderRadius: BorderRadiusDirectional.circular(40),
           border: Border.all(
-            color: Colors.grey,
+            color: Color.fromARGB(0, 133, 133, 133),
             width: 1,
           ),
         ),
